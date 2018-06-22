@@ -11,7 +11,7 @@ import './editor.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { RichText } = wp.editor;
+const { RichText, BlockControls, AlignmentToolbar } = wp.editor;
 
 /**
  * Register: aa Gutenberg Block.
@@ -44,6 +44,9 @@ registerBlockType( 'cgb/block-demo-block', {
 		content: {
 			type: 'string',
 		},
+		alignment: {
+			type: 'string',
+		}
 	},
 
 	/**
@@ -64,10 +67,17 @@ registerBlockType( 'cgb/block-demo-block', {
 		const {
 			title,
 			content,
+			alignment,
 		} = attributes;
 
 		return (
-			<div className={ className }>
+			<div className={ className } style={ { textAlign: alignment } }>
+				<BlockControls key="controls">
+					<AlignmentToolbar
+						value={ alignment }
+						onChange={ value => setAttributes( { alignment: value } ) }
+					/>
+				</BlockControls>
 				<RichText
 					tagName='h3'
 					placeholder={ __( 'Add a title' ) }
