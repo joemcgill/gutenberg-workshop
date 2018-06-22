@@ -104,8 +104,8 @@ registerBlockType( 'cgb/block-demo-block', {
 
 		return (
 			<div>
-				<h3>{ title }</h3>
-				<p>{ content }</p>
+				<RichText.Content tagName="h2" value={ title } />
+				<RichText.Content tagName="p" value={ content } />
 			</div>
 		);
 	},
