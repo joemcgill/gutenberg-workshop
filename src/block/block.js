@@ -11,7 +11,20 @@ import './editor.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { RichText, BlockControls, AlignmentToolbar } = wp.editor;
+const {
+	RichText,
+	BlockControls,
+	AlignmentToolbar,
+	ColorPalette,
+	ContrastChecker,
+	InspectorControls,
+} = wp.editor;
+const {
+	PanelColor,
+} = wp.components;
+const {
+	Fragment,
+} = wp.element;
 
 /**
  * Register: aa Gutenberg Block.
@@ -46,7 +59,14 @@ registerBlockType( 'cgb/block-demo-block', {
 		},
 		alignment: {
 			type: 'string',
-		}
+		},
+		backgroundColor: {
+			type: 'string',
+		},
+		textColor: {
+			type: 'string',
+		},
+
 	},
 
 	/**
@@ -68,33 +88,60 @@ registerBlockType( 'cgb/block-demo-block', {
 			title,
 			content,
 			alignment,
+			backgroundColor,
+			textColor,
 		} = attributes;
 
 		return (
-			<div className={ className } style={ { textAlign: alignment } }>
+			<Fragment>
+				<InspectorControls>
+					<PanelColor title={ __( 'Background Color' ) } colorValue={ backgroundColor } initialOpen={ false }>
+						<ColorPalette
+							label={ __( 'Background Color' ) }
+							value={ backgroundColor }
+							onChange={ colorValue => setAttributes( { backgroundColor: colorValue } ) }
+						/>
+					</PanelColor>
+					<PanelColor title={ __( 'Text Color' ) } colorValue={ textColor } initialOpen={ false }>
+						<ColorPalette
+							label={ __( 'Text Color' ) }
+							value={ textColor }
+							onChange={ colorValue => setAttributes( { textColor: colorValue } ) }
+						/>
+					</PanelColor>
+					<ContrastChecker
+						textColor={ textColor }
+						backgroundColor={ backgroundColor }
+						isLargeText={ false }
+						fallbackBackgroundColor={ '#fff' }
+						fallbackTextColor={ '#444' }
+					/>
+				</InspectorControls>
 				<BlockControls key="controls">
 					<AlignmentToolbar
 						value={ alignment }
 						onChange={ value => setAttributes( { alignment: value } ) }
 					/>
 				</BlockControls>
-				<RichText
-					tagName='h3'
-					placeholder={ __( 'Add a title' ) }
-					value={ title }
-					onChange={ newTitle => setAttributes( { title: newTitle } ) }
-					multiline={ false }
-					format='string'
-				/>
-				<RichText
-					tagName='p'
-					placeholder={ __( 'Add a content' ) }
-					value={ content }
-					onChange={ newContent => setAttributes( { content: newContent } ) }
-					multiline={ false }
-					format='string'
-				/>
-			</div>
+				<div className={ className } style={ { textAlign: alignment, color: textColor, backgroundColor: backgroundColor } }>
+					<RichText
+						tagName='h3'
+						placeholder={ __( 'Add a title' ) }
+						value={ title }
+						onChange={ newTitle => setAttributes( { title: newTitle } ) }
+						multiline={ false }
+						format='string'
+					/>
+					<RichText
+						tagName='p'
+						placeholder={ __( 'Add a content' ) }
+						value={ content }
+						onChange={ newContent => setAttributes( { content: newContent } ) }
+						multiline={ false }
+						format='string'
+					/>
+				</div>
+			</Fragment>
 		);
 	},
 
@@ -110,10 +157,13 @@ registerBlockType( 'cgb/block-demo-block', {
 		const {
 			title,
 			content,
+			alignment,
+			textColor,
+			backgroundColor,
 		} = attributes;
 
 		return (
-			<div>
+			<div style={ { textAlign: alignment, color: textColor, backgroundColor: backgroundColor } }>
 				<RichText.Content tagName="h2" value={ title } />
 				<RichText.Content tagName="p" value={ content } />
 			</div>
