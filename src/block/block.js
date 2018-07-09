@@ -42,6 +42,7 @@ const {
 registerBlockType( 'cgb/block-demo-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 	title: __( 'Demo Block' ), // Block title.
+	description: __( 'Remember when you were a kid and played with blocks? This is like that.'),
 	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
@@ -77,13 +78,7 @@ registerBlockType( 'cgb/block-demo-block', {
 	 *
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
 	 */
-	edit: function( props ) {
-		const {
-			attributes,
-			setAttributes,
-			className,
-		} = props;
-
+	edit: function( { attributes, setAttributes, className } ) {
 		const {
 			title,
 			content,
