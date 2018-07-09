@@ -55,13 +55,7 @@ registerBlockType( 'cgb/block-demo-block', {
 	 *
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
 	 */
-	edit: function( props ) {
-		const {
-			attributes,
-			setAttributes,
-			className,
-		} = props;
-
+	edit: function( { attributes, setAttributes, className } ) {
 		const {
 			title,
 			content,
