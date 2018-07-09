@@ -1,3 +1,18 @@
+# Gutenberg Workshop
+
+This is project is a demo WordPress plugin for learning the basics of building a Gutenberg block. 
+
+## Workshop Instructions
+
+To prepare for the Gutenberg Workshop, you should first install the following:
+
+- A local development server running WordPress 4.9.7 (Need a local environment? [Try Chassis](https://github.com/Chassis/Chassis)).
+- The latest version of the [Gutenberg plugin](https://wordpress.org/plugins/gutenberg/) installed and activated.
+- [Node 8+ and npm 5.3+ installed](https://www.npmjs.com/get-npm) (or you can use [Yarn](https://yarnpkg.com/lang/en/docs/install/), if that's your bag).
+- Clone this plugin into your plugins directory: `git clone git@github.com:joemcgill/gutenberg-workshop.git`.
+
+## Project Props
+
 This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
 
 Below you will find some information on how to run scripts.
