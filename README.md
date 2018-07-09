@@ -4,7 +4,7 @@ This is project is a demo WordPress plugin for learning the basics of building a
 
 ## Workshop Instructions
 
-To prepare for the Gutenberg Workshop, you should first install the following:
+To prepare for the Gutenberg Workshop, you should first set up the following:
 
 - A local development server running WordPress 4.9.7 (Need a local environment? [Try Chassis](https://github.com/Chassis/Chassis)).
 - The latest version of the [Gutenberg plugin](https://wordpress.org/plugins/gutenberg/) installed and activated.
